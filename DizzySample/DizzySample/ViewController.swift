@@ -11,18 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var dizzyActivityIndicator: DizzyActivityIndicatorView!
-
+    @IBOutlet weak var hiddenStateToggle: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        dizzyActivityIndicator.hidesWhenStopped = hiddenStateToggle.on
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     @IBAction func didTapToggleButton(sender: UIButton) {
         if dizzyActivityIndicator.isAnimating {
@@ -31,6 +25,10 @@ class ViewController: UIViewController {
             dizzyActivityIndicator.startAnimating()
         }
     }
-
+    
+    @IBAction func didTapHiddenToggle(toggle: UISwitch) {
+        dizzyActivityIndicator.hidesWhenStopped = toggle.on
+    }
+    
 }
 
