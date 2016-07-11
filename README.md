@@ -1,8 +1,10 @@
 # Dizzy
 
+### A Dizzying Custom UIActivityIndicatorView, Configurable through Interface Builder
+
 ![Dizzy Sample Application Demo](https://cloud.githubusercontent.com/assets/517428/16718482/4d6d981c-46d5-11e6-8bc5-78161ec476ab.gif)
 
-A `UIActivityIndicatorView` -inspired `UIView` that allows you to set a custom image for the indicator. It takes advantage of `IBDesignable` and `IBInspectable` attributes (available since XCode 6,) which allows you to configure this indicator with your custom image and preview it in Interface Builder.
+A [`UIActivityIndicatorView`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIActivityIndicatorView_Class/) -inspired [`UIView`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/index.html#//apple_ref/occ/cl/UIView) that allows you to __set a custom image for the indicator__. It takes advantage of [`IBDesignable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html) and [`IBInspectable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html) attributes (available since XCode 6,) which allows you to configure this indicator with your custom image and preview it in Interface Builder.
 
 ## Using DizzyActivityIndicatorView
 
