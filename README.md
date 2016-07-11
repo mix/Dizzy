@@ -22,7 +22,7 @@ A [`UIActivityIndicatorView`](https://developer.apple.com/library/ios/documentat
 
 ## Installation
 
-It's one file, so it's easiest to just drop it into your XCode project via a clone+copy or even a submodule reference (but if you're really hunkering for some kind of dependency manager support, then file an issue and let's work together on it!)
+It's one file, so it's easiest to just drop `DizzyActivityIndicatorView.swift` into your XCode project via a clone+copy or even a submodule reference (but if you're really hunkering for some kind of dependency manager support, then file an issue and let's work together on it!)
 
 ## Thanks
 
