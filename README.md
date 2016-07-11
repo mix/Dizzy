@@ -2,7 +2,7 @@
 
 ### A Dizzying Custom UIActivityIndicatorView, Configurable through Interface Builder
 
-Because [`IBInspectable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html) and [`IBDesignable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html) are pretty awesome time savers and I/we/you/me should use them more often!
+I was way late on reading-up about [`IBInspectable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html) and [`IBDesignable`](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html). So I started playing around with them. One thing led to another, which led to this thing. Turns out they are pretty awesome time savers and I/we/you/me should use them more often!
 
 ![Dizzy Sample Application Demo](https://cloud.githubusercontent.com/assets/517428/16718482/4d6d981c-46d5-11e6-8bc5-78161ec476ab.gif)
 
