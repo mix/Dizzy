@@ -35,9 +35,9 @@ class ViewController: UIViewController {
 extension CALayer {
     var borderUIColor: UIColor {
         get {
-            return UIColor(CGColor: self.borderColor!)
+            return UIColor(CGColor: borderColor!)
         } set {
-            self.borderColor = newValue.CGColor
+            borderColor = newValue.CGColor
         }
     }
 }
