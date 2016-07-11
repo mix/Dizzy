@@ -32,3 +32,12 @@ class ViewController: UIViewController {
     
 }
 
+extension CALayer {
+    var borderUIColor: UIColor {
+        get {
+            return UIColor(CGColor: self.borderColor!)
+        } set {
+            self.borderColor = newValue.CGColor
+        }
+    }
+}
