@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dizzyActivityIndicator.hidesWhenStopped = hiddenStateToggle.on
+        hiddenStateToggle.on = dizzyActivityIndicator.hidesWhenStopped
     }
     
     @IBAction func didTapToggleButton(sender: UIButton) {
