@@ -15,6 +15,7 @@ public class DizzyActivityIndicatorView: UIView {
     private let _animationLayer: CALayer!
     private var _isAnimating: Bool = false
     private var _revolutionsPerSecond: UInt = 1
+    private var _color: UIColor = UIColor.clearColor()
     
     @IBInspectable public var image: UIImage = UIImage() {
         didSet {
@@ -48,6 +49,16 @@ public class DizzyActivityIndicatorView: UIView {
         }
     }
     
+    @IBInspectable public var color: UIColor {
+        get {
+            return _color
+        }
+        set {
+            _color = newValue
+            image = _colorizedImage(image)
+        }
+    }
+    
     required public init?(coder aDecoder: NSCoder) {
         _animationLayer = CALayer()
         _animationLayer.name = self.dynamicType._animationLayerName
@@ -58,6 +69,33 @@ public class DizzyActivityIndicatorView: UIView {
         _animationLayer = CALayer()
         _animationLayer.name = self.dynamicType._animationLayerName
         super.init(frame: frame)
+    }
+    
+    private func _colorizedImage(image: UIImage) -> UIImage {
+        if color == UIColor.clearColor() {
+            return image
+        }
+        
+        // Thanks to @fabb for this gist: https://gist.github.com/fabb/007d30ba0759de9be8a3
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        let context: CGContext! = UIGraphicsGetCurrentContext()
+        assert(context != nil)
+        
+        CGContextTranslateCTM(context, 0, image.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        
+        let rect = CGRect(x: 0.0, y: 0.0, width: image.size.width, height: image.size.height)
+        
+        CGContextSetBlendMode(context, .Normal)
+        color.setFill()
+        CGContextFillRect(context, rect)
+        
+        CGContextSetBlendMode(context, .DestinationIn)
+        CGContextDrawImage(context, rect, image.CGImage)
+        
+        let colorizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return colorizedImage
     }
     
     private func _configureAnimationLayerFrame() {
