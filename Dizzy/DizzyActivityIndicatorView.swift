@@ -9,19 +9,25 @@
 import UIKit
 import QuartzCore
 
-class DizzyActivityIndicatorView: UIView {
+@IBDesignable
+public class DizzyActivityIndicatorView: UIView {
     private static let _animationLayerName = "DizzyActivityIndicatorView_animationLayer"
     private let _animationLayer: CALayer!
     
-    @IBInspectable var image: UIImage = UIImage() {
+    @IBInspectable public var image: UIImage = UIImage() {
         didSet {
-            _configureAnimationLayer()
+            _configureAnimationLayerFrame()
         }
     }
-    @IBInspectable var isAnimating: Bool = false
-    @IBInspectable var hidesWhenStopped: Bool = false
+    @IBInspectable public var isAnimating: Bool = false
+    @IBInspectable public var hidesWhenStopped: Bool = false
+    @IBInspectable public var revolutionsPerSecond: Int = 1 {
+        didSet {
+            _configureAnimationLayerRotation()
+        }
+    }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         _animationLayer = CALayer()
         _animationLayer.name = self.dynamicType._animationLayerName
         super.init(coder: aDecoder)
@@ -29,22 +35,31 @@ class DizzyActivityIndicatorView: UIView {
         _stop()
     }
     
-    private func _configureAnimationLayer() {
-        if let _ = layer.sublayers?.filter({ return $0.name == self.dynamicType._animationLayerName }) {
-            return
-        }
+    override init(frame: CGRect) {
+        _animationLayer = CALayer()
+        _animationLayer.name = self.dynamicType._animationLayerName
+        super.init(frame: frame)
+    }
+    
+    private func _configureAnimationLayerFrame() {
         _animationLayer.contents = image.CGImage
         _animationLayer.masksToBounds = true
         _animationLayer.frame = CGRect(x: 0.0, y: 0.0, width: image.size.width, height: image.size.height)
+        if let _ = layer.sublayers?.filter({ return $0.name == self.dynamicType._animationLayerName }) {
+            return
+        }
+        layer.addSublayer(_animationLayer)
+    }
+    
+    private func _configureAnimationLayerRotation() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath:"transform.rotation.z")
         rotation.duration = 1.0
         rotation.removedOnCompletion = false
         rotation.repeatCount = HUGE
         rotation.fillMode = kCAFillModeForwards
         rotation.fromValue = NSNumber(double: 0.0)
-        rotation.toValue = NSNumber(double: 2.0 * M_PI)
+        rotation.toValue = NSNumber(double: 2.0 * M_PI * Double(revolutionsPerSecond))
         _animationLayer.addAnimation(rotation, forKey: "rotate")
-        layer.addSublayer(_animationLayer)
     }
     
     private func _stop() {
@@ -73,14 +88,14 @@ class DizzyActivityIndicatorView: UIView {
         
     }
     
-    func stopAnimating() {
+    public func stopAnimating() {
         guard isAnimating else {
             return
         }
         _stop()
     }
     
-    func startAnimating() {
+    public func startAnimating() {
         if isAnimating {
             return
         }
