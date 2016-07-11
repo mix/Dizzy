@@ -23,3 +23,7 @@ A [`UIActivityIndicatorView`](https://developer.apple.com/library/ios/documentat
 ## Installation
 
 It's one file, so it's easiest to just drop it into your XCode project via a clone+copy or even a submodule reference (but if you're really hunkering for some kind of dependency manager support, then file an issue and let's work together on it!)
+
+## Thanks
+
+Thanks to [@fabb](https://github.com/fabb) for this gist: <https://gist.github.com/fabb/007d30ba0759de9be8a3>, which helped to make adding color support an easy task.
