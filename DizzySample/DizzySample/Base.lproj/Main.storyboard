@@ -19,48 +19,84 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rl7-Bs-Pb2" customClass="DizzyActivityIndicatorView" customModule="DizzySample" customModuleProvider="target">
-                                <rect key="frame" x="281" y="107" width="38" height="38"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="285" y="111" width="31" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="hVc-TU-VfO"/>
-                                    <constraint firstAttribute="width" constant="38" id="jbX-BU-G8w"/>
+                                    <constraint firstAttribute="height" constant="31" id="hVc-TU-VfO"/>
+                                    <constraint firstAttribute="width" constant="31" id="jbX-BU-G8w"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="bleh"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimating" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="splat"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="revolutionsPerSecond">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBh-5U-uM6">
-                                <rect key="frame" x="241" y="164" width="119" height="30"/>
-                                <state key="normal" title="Toggle Animation"/>
+                                <rect key="frame" x="227" y="161" width="146" height="36"/>
+                                <accessibility key="accessibilityConfiguration" hint="Toggles the animation of this custom activity indicator" label="Toggle Animation"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="zFV-KV-GhY"/>
+                                    <constraint firstAttribute="height" constant="36" id="zrY-FM-eYe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Toggle Animation">
+                                    <color key="titleColor" white="0.34999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="0.57524463380000002" green="0.57524463380000002" blue="0.57524463380000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTapToggleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8VD-iz-91f"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xBi-bf-dxt">
-                                <rect key="frame" x="276" y="224" width="51" height="31"/>
-                                <connections>
-                                    <action selector="didTapHiddenToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="ncZ-Y4-8wh"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIDES WHEN STOPPED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyA-TB-J0u">
-                                <rect key="frame" x="228" y="263" width="145" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.35287314967105265" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="oCb-3h-mVB">
+                                <rect key="frame" x="194" y="228" width="213" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIDES WHEN STOPPED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyA-TB-J0u">
+                                        <rect key="frame" x="0.0" y="0.0" width="145" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Hides this custom activity indicator when its animation is stopped" label="Hides When Stopped"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.35287314967105265" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xBi-bf-dxt">
+                                        <rect key="frame" x="164" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="didTapHiddenToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="ncZ-Y4-8wh"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="https://github.com/otanistudio/Dizzy" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mkh-O6-MgU">
+                                <rect key="frame" x="140" y="555" width="321" height="37"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.11443561907303315" green="0.19612538427047857" blue="0.56788589015151514" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Oyx-Sj-omV"/>
+                                    <constraint firstAttribute="width" constant="321" id="sYg-Yr-HVY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xBi-bf-dxt" firstAttribute="top" secondItem="oBh-5U-uM6" secondAttribute="bottom" constant="30" id="7UI-cH-6U5"/>
+                            <constraint firstItem="oCb-3h-mVB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4uu-pz-vrW"/>
                             <constraint firstItem="oBh-5U-uM6" firstAttribute="top" secondItem="Rl7-Bs-Pb2" secondAttribute="bottom" constant="19" id="7pK-tE-Fzw"/>
                             <constraint firstItem="oBh-5U-uM6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DX8-wt-7TG"/>
-                            <constraint firstItem="xBi-bf-dxt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YGL-Bm-BvX"/>
+                            <constraint firstItem="oCb-3h-mVB" firstAttribute="top" secondItem="oBh-5U-uM6" secondAttribute="bottom" constant="31" id="MbA-xh-tXT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Mkh-O6-MgU" secondAttribute="bottom" constant="8" id="YL8-jk-LBz"/>
                             <constraint firstItem="Rl7-Bs-Pb2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hdZ-Hw-qh0"/>
-                            <constraint firstItem="yyA-TB-J0u" firstAttribute="top" secondItem="xBi-bf-dxt" secondAttribute="bottom" constant="8" id="iti-Cb-zvB"/>
-                            <constraint firstItem="yyA-TB-J0u" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="k3W-DT-uCS"/>
                             <constraint firstItem="Rl7-Bs-Pb2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.42" id="khi-wW-M2X"/>
+                            <constraint firstItem="Mkh-O6-MgU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rzd-kg-Mry"/>
                             <constraint firstItem="Rl7-Bs-Pb2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="w6o-Vl-aDT"/>
                         </constraints>
                         <variation key="default">
@@ -76,9 +112,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="322" y="657"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bleh" width="38" height="38"/>
+        <image name="splat" width="31" height="31"/>
     </resources>
 </document>
