@@ -13,13 +13,27 @@ import QuartzCore
 public class DizzyActivityIndicatorView: UIView {
     private static let _animationLayerName = "DizzyActivityIndicatorView_animationLayer"
     private let _animationLayer: CALayer!
+    private var _isAnimating: Bool = false
     
     @IBInspectable public var image: UIImage = UIImage() {
         didSet {
             _configureAnimationLayerFrame()
         }
     }
-    @IBInspectable public var isAnimating: Bool = false
+    @IBInspectable public var isAnimating: Bool {
+        get {
+            return _isAnimating
+        }
+        set {
+            _isAnimating = newValue
+            if newValue {
+                _start()
+            } else {
+                _stop()
+            }
+        }
+    }
+    
     @IBInspectable public var hidesWhenStopped: Bool = false
     @IBInspectable public var revolutionsPerSecond: Int = 1 {
         didSet {
@@ -31,8 +45,6 @@ public class DizzyActivityIndicatorView: UIView {
         _animationLayer = CALayer()
         _animationLayer.name = self.dynamicType._animationLayerName
         super.init(coder: aDecoder)
-        
-        _stop()
     }
     
     override init(frame: CGRect) {
@@ -63,7 +75,7 @@ public class DizzyActivityIndicatorView: UIView {
     }
     
     private func _stop() {
-        isAnimating = false
+        _isAnimating = false
 
         let timeOffset = _animationLayer.convertTime(CACurrentMediaTime(), fromLayer: nil)
         _animationLayer.speed = 0.0
@@ -74,8 +86,8 @@ public class DizzyActivityIndicatorView: UIView {
         }
     }
     
-    private func _go() {
-        isAnimating = true
+    private func _start() {
+        _isAnimating = true
         
         let timeOffset : CFTimeInterval = _animationLayer.timeOffset
         
@@ -85,23 +97,22 @@ public class DizzyActivityIndicatorView: UIView {
         
         let timeSinceOffset = _animationLayer.convertTime(CACurrentMediaTime(), fromLayer: nil) - timeOffset
         _animationLayer.beginTime = timeSinceOffset
-        
     }
     
     public func stopAnimating() {
-        guard isAnimating else {
+        guard _isAnimating else {
             return
         }
         _stop()
     }
     
     public func startAnimating() {
-        if isAnimating {
+        if _isAnimating {
             return
         }
         if hidden {
             hidden = false
         }
-        _go()
+        _start()
     }
 }
