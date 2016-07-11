@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="width" constant="31" id="jbX-BU-G8w"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimating" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimating" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="NO"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="image" value="splat"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="revolutionsPerSecond">
