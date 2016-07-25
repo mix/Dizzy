@@ -14,7 +14,7 @@ public class DizzyActivityIndicatorView: UIView {
     private static let _animationLayerName = "DizzyActivityIndicatorView_animationLayer"
     private let _animationLayer: CALayer!
     private var _isAnimating: Bool = false
-    private var _revolutionsPerSecond: UInt = 1
+    private var _revolutionsPerSecond: Int = 1
     private var _color: UIColor = UIColor.clearColor()
     
     @IBInspectable public var image: UIImage = UIImage() {
@@ -39,7 +39,7 @@ public class DizzyActivityIndicatorView: UIView {
     @IBInspectable public var hidesWhenStopped: Bool = false
     
     /// Resets to 1 if set to 0
-    @IBInspectable public var revolutionsPerSecond: UInt {
+    @IBInspectable public var revolutionsPerSecond: Int {
         get {
             return _revolutionsPerSecond
         }
@@ -110,12 +110,13 @@ public class DizzyActivityIndicatorView: UIView {
     
     private func _configureAnimationLayerRotation() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath:"transform.rotation.z")
-        rotation.duration = 1.0 / Double(_revolutionsPerSecond)
+        let circumference = _revolutionsPerSecond > 0 ? 2.0 * M_PI : -2.0 * M_PI
+        rotation.duration = 1.0 / Double(abs(_revolutionsPerSecond))
         rotation.removedOnCompletion = false
         rotation.repeatCount = HUGE
         rotation.fillMode = kCAFillModeForwards
         rotation.fromValue = NSNumber(double: 0.0)
-        rotation.toValue = NSNumber(double: 2.0 * M_PI)
+        rotation.toValue = NSNumber(double: circumference)
         _animationLayer.addAnimation(rotation, forKey: "rotate")
     }
     
